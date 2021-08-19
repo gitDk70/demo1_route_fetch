@@ -1,8 +1,14 @@
 export default class Tache {
-
-
+    
     static setUsager(usager){
-       
+        const api_url = "https://api-nodejs-todolist.herokuapp.com/";
+
+        usager = {
+                name: "Jonathan Martel",
+                email: "toto@toto.com",
+                password : "123123123",
+                age : "103" 
+            };
         const entete = new Headers();
         entete.append("Content-Type", "application/json");
         
@@ -11,7 +17,14 @@ export default class Tache {
             headers: entete,
             body: JSON.stringify(usager),
             redirect: 'follow'
-          };
+        };
+          
+        //fetch retourne une promesse
+        fetch(api_url + "user/register", reqOptions)
+            .then(function(reponse) {
+              console.log(reponse);
+            });
+        
           
             
             
