@@ -31,7 +31,11 @@ export default class Tache {
     }   
 
     static logUsager(usager){
-       
+        const api_url = "https://api-nodejs-todolist.herokuapp.com/";
+        usager = {
+            email: "toto1@toto.com",
+            password : "123123123",
+        };
         const entete = new Headers();
         entete.append("Content-Type", "application/json");
         
@@ -41,7 +45,10 @@ export default class Tache {
             body: JSON.stringify(usager),
             redirect: 'follow'
           };
-          
+        fetch(api_url + "user/login", reqOptions)
+            .then(function(reponse) {
+                console.log(reponse);
+            });
     }   
 
     static delUsager(auth){
@@ -78,6 +85,7 @@ export default class Tache {
     }
 
     static getListeTache (auth){
+        const api_url = "https://api-nodejs-todolist.herokuapp.com/";
         const entete = new Headers();
         entete.append("Content-Type", "application/json");
         entete.append("Authorization", "Bearer "+auth);
@@ -87,6 +95,9 @@ export default class Tache {
             headers: entete,
             redirect: 'follow'
           };
-          
+        fetch(api_url + "task", reqOptions)
+            .then(function(reponse) {
+                console.log(reponse);
+            });
     }
 }

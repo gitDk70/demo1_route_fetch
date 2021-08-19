@@ -8,5 +8,6 @@ import Affichage from './Affichage.mjs';
         //App = new _App();
         //Tache.setUsager();
         Affichage.afficheEnregistrer();
+        Tache.logUsager();
     })
 })()
