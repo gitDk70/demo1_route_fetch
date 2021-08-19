@@ -1,8 +1,6 @@
 <!--
-https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/import
-https://medium.com/@fro_g/routing-in-javascript-d552ff4d2921
 https://api-nodejs-todolist.herokuapp.com/
-
+https://github.com/janl/mustache.js/
 https://github.com/visionmedia/page.js
 -->
 <!DOCTYPE html>
@@ -27,6 +25,14 @@ https://github.com/visionmedia/page.js
         <main>
 
         </main>
-    
+        <script id="tmplNav" type="x-tmpl-mustache">
+            <nav>
+                <a href="./tache">Liste des tâches</a>
+                <a href="./ajouter">Ajouter une taches</a>
+                <a href="./enregistrer">S'enregistrer</a>
+                <a href="./connecter">Se connecter</a>
+            </nav>
+
+        </script>
     </body>
 </html>
