@@ -4,7 +4,6 @@ import _App from './App.mjs';
     let App = {};
     document.addEventListener("DOMContentLoaded", ()=>{
         App = new _App();
-
                
     })
 })()

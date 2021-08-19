@@ -2,13 +2,13 @@ export default class Tache {
 
 
     static setUsager(usager){
-        //console.log(usager);
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+       
+        const entete = new Headers();
+        entete.append("Content-Type", "application/json");
         
-        const requestOptions = {
+        const reqOptions = {
             method: 'POST',
-            headers: myHeaders,
+            headers: entete,
             body: JSON.stringify(usager),
             redirect: 'follow'
           };
@@ -19,12 +19,12 @@ export default class Tache {
 
     static logUsager(usager){
        
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+        const entete = new Headers();
+        entete.append("Content-Type", "application/json");
         
-        const requestOptions = {
+        const reqOptions = {
             method: 'POST',
-            headers: myHeaders,
+            headers: entete,
             body: JSON.stringify(usager),
             redirect: 'follow'
           };
@@ -32,12 +32,12 @@ export default class Tache {
     }   
 
     static delUsager(auth){
-        const myHeaders = new Headers();
-        myHeaders.append("Authorization", "Bearer "+auth);
+        const entete = new Headers();
+        entete.append("Authorization", "Bearer "+auth);
 
-        const requestOptions = {
+        const reqOptions = {
             method: 'DELETE',
-            headers: myHeaders,
+            headers: entete,
             redirect: 'follow'
           };
           
@@ -51,13 +51,13 @@ export default class Tache {
 
     static setTache (tache, auth){
         
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("Authorization", "Bearer "+auth);
+        const entete = new Headers();
+        entete.append("Content-Type", "application/json");
+        entete.append("Authorization", "Bearer "+auth);
 
-        const requestOptions = {
+        const reqOptions = {
             method: 'POST',
-            headers: myHeaders,
+            headers: entete,
             body: JSON.stringify(tache),
             redirect: 'follow'
           };
@@ -65,13 +65,13 @@ export default class Tache {
     }
 
     static getListeTache (auth){
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("Authorization", "Bearer "+auth);
+        const entete = new Headers();
+        entete.append("Content-Type", "application/json");
+        entete.append("Authorization", "Bearer "+auth);
 
-        const requestOptions = {
+        const reqOptions = {
             method: 'GET',
-            headers: myHeaders,
+            headers: entete,
             redirect: 'follow'
           };
           
