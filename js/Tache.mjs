@@ -5,7 +5,7 @@ export default class Tache {
 
         usager = {
                 name: "Jonathan Martel",
-                email: "toto@toto.com",
+                email: "toto1@toto.com",
                 password : "123123123",
                 age : "103" 
             };
@@ -22,7 +22,7 @@ export default class Tache {
         //fetch retourne une promesse
         fetch(api_url + "user/register", reqOptions)
             .then(function(reponse) {
-              console.log(reponse);
+                console.log(reponse);
             });
         
           
