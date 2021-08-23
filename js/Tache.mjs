@@ -26,12 +26,6 @@ export default class Tache {
     static setUsager(usager){
         console.log(this);
 
-        usager = {
-                name: "Jonathan Martel",
-                email: "toto1@toto.com",
-                password : "123123123",
-                age : "103" 
-            };
         const entete = new Headers();
         entete.append("Content-Type", "application/json");
         
@@ -59,15 +53,11 @@ export default class Tache {
      * @param {object} usager
      * @param {string} usager.email
      * @param {string} usager.password
-     * @returns ?
+     * @returns {Promise} 
      * @memberof Tache
      */
     static logUsager(usager){
         
-        usager = {
-            email: "toto1@toto.com",
-            password : "123123123",
-        };
         const entete = new Headers();
         entete.append("Content-Type", "application/json");
         
@@ -77,9 +67,9 @@ export default class Tache {
             body: JSON.stringify(usager),
             redirect: 'follow'
           };
-        fetch(this.api_url + "user/login", reqOptions)
+        return fetch(this.api_url + "user/login", reqOptions)
             .then(function(reponse) {
-                console.log(reponse);
+                return reponse.json();
             });
     }   
     
@@ -102,6 +92,10 @@ export default class Tache {
             redirect: 'follow'
           };
           
+          return fetch(this.api_url + "user/me", reqOptions)
+          .then(function(reponse) {
+              return reponse.json();
+          });
     }   
 
     
@@ -127,7 +121,10 @@ export default class Tache {
             body: JSON.stringify(tache),
             redirect: 'follow'
           };
-          
+          return fetch(this.api_url + "task", reqOptions)
+          .then(function(reponse) {
+              console.log(reponse);
+          });
     }
     
     /**
@@ -149,9 +146,7 @@ export default class Tache {
             headers: entete,
             redirect: 'follow'
         };
-        fetch(this.api_url + "task", reqOptions)
-            .then(function(reponse) {
-                console.log(reponse);
-            });
+        return fetch(this.api_url + "task", reqOptions)
+            .then(reponse => reponse.json());
     }
 }

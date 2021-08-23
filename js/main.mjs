@@ -5,7 +5,7 @@ import page from "//unpkg.com/page/page.mjs";
 
 (function(){
     let App = {};
-    const info = {usager : {}, taches:[]};
+    const info = {usager : {}, taches:[], toto : "allo le monde"};
 
     const aRoutes = [
         {chemin : "/enregistrer", fichier:"enregistrer.html", tmpl:"", cb: cbEnregistrer},
@@ -52,10 +52,18 @@ import page from "//unpkg.com/page/page.mjs";
 
     function cbTaches(ctx) {
         let template = getTemplate(ctx);
+        Tache.getListeTache(info.usager.token)
+                .then(donnees => {
+                    console.log(donnees)
+                    info.taches = donnees.data;
+                    console.log(info.taches)
 
-        if(template){
-            Affichage.afficherTemplate(template, info, document.querySelector("main"));   // tmpl, data, noeud
-        }
+                    if(template){
+                        Affichage.afficherTemplate(template, info, document.querySelector("main"));   // tmpl, data, noeud
+                    }
+                });
+        
+        
         
         
     };
@@ -83,6 +91,56 @@ import page from "//unpkg.com/page/page.mjs";
         page({
             hashbang : true
         });
+
+
+        document.querySelector("main").addEventListener("click", function(evt){
+            console.log(evt.target)
+
+            if(evt.target.classList.contains("actionEnregistrer")){
+                let usager = {
+                    name: "Jonathan Martel",
+                    email : "toto1@test.test",
+                    password : "123123123",
+                    age : 103
+                }
+                Tache.setUsager(usager);
+            }
+
+            if(evt.target.classList.contains("actionEffacerUsager")){
+                if(info.usager.token){
+                    Tache.delUsager(info.usager.token);
+                    info.usager = {};
+                }
+                
+            }
+
+            if(evt.target.classList.contains("actionConnecter")){
+                let usager = {
+                    email : "toto1@test.test",
+                    password : "123123123",
+                }
+                Tache.logUsager(usager)
+                    .then(infoLogin =>{
+                        info.usager = infoLogin;
+                        console.log(info.usager)
+                    });
+            }
+            if(evt.target.classList.contains("actionDeconnecter")){
+                info.usager = {};
+            }
+
+           
+
+            if(evt.target.classList.contains("actionAjouter")){
+                let tache = {
+                    description : "Test tache #"+ Math.floor(Math.random() * 100)
+                }
+                if(info.usager.token){
+                    Tache.setTache(tache, info.usager.token);
+                }   
+            }
+
+        })
 
     })
 })()
