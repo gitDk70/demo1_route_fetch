@@ -9,8 +9,8 @@ import page from "//unpkg.com/page/page.mjs";
 
     const aRoutes = [
         {chemin : "/enregistrer", fichier:"enregistrer.html", tmpl:"", cb: cbEnregistrer},
-        {chemin : "/tache", fichier:"tache.html", tmpl:"", cb: function(){}},
-        {chemin : "/ajouter", fichier:"ajouter.html", tmpl:"", cb: function(){}},
+        {chemin : "/tache", fichier:"tache.html", tmpl:"", cb: cbTaches},
+        {chemin : "/ajouter", fichier:"ajouter.html", tmpl:"", cb: cbAjouter},
         {chemin : "/", fichier:"tache.html", tmpl:"", cb: function(){}},
         {chemin : "/connecter", fichier:"connecter.html", tmpl:"", cb: cbConnecter},
     ];
@@ -32,7 +32,7 @@ import page from "//unpkg.com/page/page.mjs";
     }
     
     function cbEnregistrer(ctx) {
-        let template = getTemplate(ctx)
+        let template = getTemplate(ctx);
 
         if(template){
             Affichage.afficherTemplate(template, info, document.querySelector("main"));   // tmpl, data, noeud
@@ -48,6 +48,24 @@ import page from "//unpkg.com/page/page.mjs";
         }
         
         console.log("enregistrer ...")
+    };
+
+    function cbTaches(ctx) {
+        let template = getTemplate(ctx);
+
+        if(template){
+            Affichage.afficherTemplate(template, info, document.querySelector("main"));   // tmpl, data, noeud
+        }
+        
+        
+    };
+
+    function cbAjouter(ctx) {
+        let template = getTemplate(ctx);
+        if(template){
+            Affichage.afficherTemplate(template, info, document.querySelector("main"));   // tmpl, data, noeud
+        }
+        
     };
 
     // Toujours s'assurer que le DOM est prêt avant de manipuler le HTML.
