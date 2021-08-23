@@ -14,16 +14,25 @@ import page from "//unpkg.com/page/page.mjs";
         {chemin : "/", fichier:"tache.html", tmpl:"", cb: function(){}},
         {chemin : "/connecter", fichier:"connecter.html", tmpl:"", cb: cbConnecter},
     ];
-    
-    
-    
-    function cbEnregistrer(ctx) {
+    /**
+     * Retourne le template pour l'affichage avec Mustache
+     * Trop spécifique pour être placé dans le module Affichage (deux dépenses)
+     *
+     * @param {Object} ctx
+     * @returns {string}
+     */
+    function getTemplate (ctx){
         let template;
         aRoutes.forEach(uneRoute => {            
             if(uneRoute.chemin == ctx.path){
                 template = uneRoute.tmpl;
             }
         });
+        return template;
+    }
+    
+    function cbEnregistrer(ctx) {
+        let template = getTemplate(ctx)
 
         if(template){
             Affichage.afficherTemplate(template, info, document.querySelector("main"));   // tmpl, data, noeud
@@ -32,12 +41,7 @@ import page from "//unpkg.com/page/page.mjs";
         console.log("enregistrer ...")
     };
     function cbConnecter(ctx) {
-        let template;
-        aRoutes.forEach(uneRoute => {            
-            if(uneRoute.chemin == ctx.path){
-                template = uneRoute.tmpl;
-            }
-        });
+        let template = getTemplate(ctx);
 
         if(template){
             Affichage.afficherTemplate(template, info, document.querySelector("main"));   // tmpl, data, noeud
