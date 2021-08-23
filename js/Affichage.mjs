@@ -22,7 +22,7 @@ export default class Affichage {
      * @memberof Affichage
      */
     static afficherTemplate(tmpl, data={}, noeud){
-
+        noeud.innerHTML = Mustache.render(tmpl, data);
     }
     /**
      * Permet le chargement asynchrone des templates pour Mustache.js
