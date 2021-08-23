@@ -33,6 +33,15 @@ export default class Affichage {
      * @memberof Affichage
      */
     static chargementTemplate(aTemplates){
+        let htmlTemplate = [];
+        aTemplates.forEach(uneRoute=>{
+            console.log(uneRoute.fichier);
+            htmlTemplate.push(fetch("./vues/"+uneRoute.fichier)
+                .then(reponse => reponse.text())
+                    .then(template => uneRoute.tmpl = template));
+                //.then(function(reponse) {return reponse.text()});
+        })
 
+        return Promise.all(htmlTemplate);
     }
 }
