@@ -21,7 +21,7 @@ export default class Affichage {
      * @param {Element} noeud
      * @memberof Affichage
      */
-    static afficherTemplate(tmpl, data={}, noeud){
+    static afficherTemplate(tmpl, data, noeud){
         noeud.innerHTML = Mustache.render(tmpl, data);
     }
     /**

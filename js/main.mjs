@@ -5,20 +5,46 @@ import page from "//unpkg.com/page/page.mjs";
 
 (function(){
     let App = {};
-    
+    const info = {usager : {}, taches:[]};
+
     const aRoutes = [
         {chemin : "/enregistrer", fichier:"enregistrer.html", tmpl:"", cb: cbEnregistrer},
         {chemin : "/tache", fichier:"tache.html", tmpl:"", cb: function(){}},
         {chemin : "/ajouter", fichier:"ajouter.html", tmpl:"", cb: function(){}},
         {chemin : "/", fichier:"tache.html", tmpl:"", cb: function(){}},
-        {chemin : "/connecter", fichier:"connecter.html", tmpl:"", cb: function(){}},
+        {chemin : "/connecter", fichier:"connecter.html", tmpl:"", cb: cbConnecter},
     ];
     
-    function cbEnregistrer() {
-        Affichage.afficheEnregistrer();
+    
+    
+    function cbEnregistrer(ctx) {
+        let template;
+        aRoutes.forEach(uneRoute => {            
+            if(uneRoute.chemin == ctx.path){
+                template = uneRoute.tmpl;
+            }
+        });
+
+        if(template){
+            Affichage.afficherTemplate(template, info, document.querySelector("main"));   // tmpl, data, noeud
+        }
+        
         console.log("enregistrer ...")
     };
+    function cbConnecter(ctx) {
+        let template;
+        aRoutes.forEach(uneRoute => {            
+            if(uneRoute.chemin == ctx.path){
+                template = uneRoute.tmpl;
+            }
+        });
 
+        if(template){
+            Affichage.afficherTemplate(template, info, document.querySelector("main"));   // tmpl, data, noeud
+        }
+        
+        console.log("enregistrer ...")
+    };
 
     // Toujours s'assurer que le DOM est prêt avant de manipuler le HTML.
     document.addEventListener("DOMContentLoaded", ()=>{
