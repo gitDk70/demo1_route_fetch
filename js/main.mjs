@@ -154,9 +154,16 @@ import page from "//unpkg.com/page/page.mjs";
            
 
             if(evt.target.classList.contains("actionAjouter")){
+                // let tache = {
+                //     description : "Test tache #"+ Math.floor(Math.random() * 100)
+                // }
+                let tacheNode = document.querySelector('#ajouterTache'),
+                    tdescription = tacheNode.querySelector("input[name='description']").value;
+                
                 let tache = {
-                    description : "Test tache #"+ Math.floor(Math.random() * 100)
-                }
+                        description : tdescription
+                    }  
+                    console.log(info.usager.token);  
                 if(info.usager.token){
                     Tache.setTache(tache, info.usager.token);
                 }   
