@@ -174,7 +174,7 @@ export default class Tache {
     static updateTache (idTache,auth){
         console.log(idTache)
         let theBody = {
-            "completed" : true
+            "completed" : true   //ref.: https://api-nodejs-todolist.herokuapp.com/#jump-Task-UpdateTaskbyId
         }
         const entete = new Headers();
         entete.append("Content-Type", "application/json");
