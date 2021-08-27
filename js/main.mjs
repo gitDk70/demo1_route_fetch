@@ -97,12 +97,25 @@ import page from "//unpkg.com/page/page.mjs";
             console.log(evt.target)
 
             if(evt.target.classList.contains("actionEnregistrer")){
+                // let usager = {
+                //     name: "Jonathan Martel",
+                //     email : "toto1@test.test",
+                //     password : "123123123",
+                //     age : 103
+                // }
+                let enrNode = document.querySelector("#enregistrer");
+                let uname = enrNode.querySelector("input[name='name']").value;
+                let uemail = enrNode.querySelector("input[name='email']").value;
+                let upwd = enrNode.querySelector("input[name='password']").value;
+                let uage = enrNode.querySelector("input[name='age']").value;
+
                 let usager = {
-                    name: "Jonathan Martel",
-                    email : "toto1@test.test",
-                    password : "123123123",
-                    age : 103
+                    name: uname,
+                    email : uemail,
+                    password : upwd,
+                    age : uage
                 }
+
                 Tache.setUsager(usager);
             }
 
@@ -116,9 +129,17 @@ import page from "//unpkg.com/page/page.mjs";
 
             if(evt.target.classList.contains("actionConnecter")){
                 let usager = {
-                    email : "toto1@test.test",
+                    email : "aaa@test.test",
                     password : "123123123",
                 }
+                let uemail = document.querySelector("#connection input[name='email']").value;
+                let upwd = document.querySelector("#connection input[name='password']").value;
+
+                // let usager = {
+                //         email : uemail,
+                //         password : upwd,
+                //     }
+
                 Tache.logUsager(usager)
                     .then(infoLogin =>{
                         info.usager = infoLogin;
