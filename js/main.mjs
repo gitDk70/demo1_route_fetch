@@ -87,7 +87,7 @@ import page from "//unpkg.com/page/page.mjs";
                 })
             });
 
-        // Lancement du router, avec les #!/routes (hashbang)
+        
         page({
             hashbang : true
         });
@@ -97,12 +97,7 @@ import page from "//unpkg.com/page/page.mjs";
             console.log(evt.target)
 
             if(evt.target.classList.contains("actionEnregistrer")){
-                // let usager = {
-                //     name: "Jonathan Martel",
-                //     email : "toto1@test.test",
-                //     password : "123123123",
-                //     age : 103
-                // }
+              
                 let enrNode = document.querySelector("#enregistrer");
                 let uname = enrNode.querySelector("input[name='name']").value;
                 let uemail = enrNode.querySelector("input[name='email']").value;
@@ -153,39 +148,44 @@ import page from "//unpkg.com/page/page.mjs";
            
 
             if(evt.target.classList.contains("actionAjouter")){
-                // let tache = {
-                //     description : "Test tache #"+ Math.floor(Math.random() * 100)
-                // }
+                
                 let tacheNode = document.querySelector('#ajouterTache'),
                     tdescription = tacheNode.querySelector("input[name='description']").value;
                 
                 let tache = {
                         description : tdescription,
-                        complete    : ""
+                        
                     }  
                     console.log(info.usager.token);  
                 if(info.usager.token){
+
                     Tache.setTache(tache, info.usager.token);
                 }   
             }
 
             if(evt.target.classList.contains("material-icons")){
+
                 let liNode = evt.target.parentNode;
                 console.log("tache id : "+liNode.dataset.id);
+
                 Tache.delTache(liNode.dataset.id,info.usager.token)
             }
 
-            
+            // Si l'evenement click se fait sur une tache
             if(evt.target.getAttribute("data-id")){
+
                 let liNode = evt.target;
                 console.log("tache id : "+liNode.dataset.id);
+
                 Tache.updateTache(liNode.dataset.id,info.usager.token)
-                .then(infoTache => {
-                      infoTache.data.completed = "true";
-                      console.log(infoTache.data);   
+                .then(infoTache => {   //les données de la tache clickee, reçue suite au fetch (PUT sur {{url}}/task/idTache)
+                      console.log(infoTache.data.completed)
+                      console.log(infoTache.data.completed)
+                      evt.target.classList.toggle("complete"); //tache completee, toggle de la classe "complete" 
+                      console.log(infoTache.data);  
+                      
                 });
                     
-                evt.target.classList.toggle("complete");
                 
             }
 

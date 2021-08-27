@@ -149,6 +149,7 @@ export default class Tache {
         return fetch(this.api_url + "task", reqOptions)
             .then(reponse => reponse.json());
     }
+
     static delTache (idTache,auth){
         console.log(idTache)
         const entete = new Headers();
@@ -162,26 +163,34 @@ export default class Tache {
           
           return fetch(this.api_url + "task/"+idTache, reqOptions)
           .then(function(reponse) {
-              return reponse.text();
+            return reponse.text();
           });
 
     }
 
+    // Methode de mise à jour du statut completed à true pour une tache par son id: idTache 
+    // pour un usagerdont le token est : auth
+
     static updateTache (idTache,auth){
         console.log(idTache)
+        let theBody = {
+            "completed" : true
+        }
         const entete = new Headers();
+        entete.append("Content-Type", "application/json");
         entete.append("Authorization", "Bearer "+auth);
 
         const reqOptions = {
             method: 'PUT',
             headers: entete,
+            body: JSON.stringify(theBody),
             redirect: 'follow'
           };
           
-          return fetch(this.api_url + "task/"+idTache, reqOptions)
-          .then(function(reponse) {
-              return reponse.json();
-          });
+        return fetch(this.api_url + "task/"+idTache, reqOptions)
+        .then(function(reponse) {
+            return reponse.json();
+        });
 
     }
 }
