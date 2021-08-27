@@ -169,6 +169,13 @@ import page from "//unpkg.com/page/page.mjs";
                 }   
             }
 
+            if(evt.target.classList.contains("material-icons")){
+                let liNode = evt.target.parentNode;
+                console.log(liNode) 
+                console.log(liNode.dataset.id);
+                Tache.delTache(liNode.dataset.id,info.usager.token)
+            }
+
         })
 
     })
