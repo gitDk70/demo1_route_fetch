@@ -164,11 +164,11 @@ import page from "//unpkg.com/page/page.mjs";
             }
 
             if(evt.target.classList.contains("material-icons")){
-
-                let liNode = evt.target.parentNode;
+                //click sur l'icone du delete
+                let liNode = evt.target.parentNode;  //recuperation du id de la tache avec le dataset
                 console.log("tache id : "+liNode.dataset.id);
-
-                Tache.delTache(liNode.dataset.id,info.usager.token)
+              
+                Tache.delTache(liNode.dataset.id,info.usager.token) //appel de la methode delTache pour la suppression de la tache
             }
 
             // Si l'evenement click se fait sur une tache

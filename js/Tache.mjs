@@ -150,7 +150,7 @@ export default class Tache {
             .then(reponse => reponse.json());
     }
 
-    static delTache (idTache,auth){
+    static delTache (idTache,auth){ //parametres id de la tache et token du user
         console.log(idTache)
         const entete = new Headers();
         entete.append("Authorization", "Bearer "+auth);
@@ -161,7 +161,7 @@ export default class Tache {
             redirect: 'follow'
           };
           
-          return fetch(this.api_url + "task/"+idTache, reqOptions)
+          return fetch(this.api_url + "task/"+idTache, reqOptions) //delete avec {{url}}/task/idTache
           .then(function(reponse) {
             return reponse.text();
           });
