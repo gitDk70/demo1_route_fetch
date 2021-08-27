@@ -5,7 +5,7 @@ import page from "//unpkg.com/page/page.mjs";
 
 (function(){
     let App = {};
-    const info = {usager : {}, taches:[], toto : "allo le monde"};
+    const info = {usager : {}, taches:[]};
 
     const aRoutes = [
         {chemin : "/enregistrer", fichier:"enregistrer.html", tmpl:"", cb: cbEnregistrer},
@@ -128,17 +128,18 @@ import page from "//unpkg.com/page/page.mjs";
             }
 
             if(evt.target.classList.contains("actionConnecter")){
-                let usager = {
-                    email : "aaa@test.test",
-                    password : "123123123",
-                }
-                let uemail = document.querySelector("#connection input[name='email']").value;
-                let upwd = document.querySelector("#connection input[name='password']").value;
-
                 // let usager = {
-                //         email : uemail,
-                //         password : upwd,
-                //     }
+                //     email : "aaa@test.test",
+                //     password : "123123123",
+                // }
+                let coNode = document.querySelector("#connection"),
+                    uemail = coNode.querySelector("input[name='email']").value,
+                    upwd   = coNode.querySelector("input[name='password']").value;
+
+                let usager = {
+                        email : uemail,
+                        password : upwd,
+                    }
 
                 Tache.logUsager(usager)
                     .then(infoLogin =>{
