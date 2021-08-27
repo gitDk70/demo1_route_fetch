@@ -149,4 +149,39 @@ export default class Tache {
         return fetch(this.api_url + "task", reqOptions)
             .then(reponse => reponse.json());
     }
+    static delTache (idTache,auth){
+        console.log(idTache)
+        const entete = new Headers();
+        entete.append("Authorization", "Bearer "+auth);
+
+        const reqOptions = {
+            method: 'DELETE',
+            headers: entete,
+            redirect: 'follow'
+          };
+          
+          return fetch(this.api_url + "task/"+idTache, reqOptions)
+          .then(function(reponse) {
+              return reponse.text();
+          });
+
+    }
+
+    static updateTache (idTache,auth){
+        console.log(idTache)
+        const entete = new Headers();
+        entete.append("Authorization", "Bearer "+auth);
+
+        const reqOptions = {
+            method: 'PUT',
+            headers: entete,
+            redirect: 'follow'
+          };
+          
+          return fetch(this.api_url + "task/"+idTache, reqOptions)
+          .then(function(reponse) {
+              return reponse.json();
+          });
+
+    }
 }

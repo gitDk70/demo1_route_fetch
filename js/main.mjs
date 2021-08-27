@@ -128,10 +128,7 @@ import page from "//unpkg.com/page/page.mjs";
             }
 
             if(evt.target.classList.contains("actionConnecter")){
-                // let usager = {
-                //     email : "aaa@test.test",
-                //     password : "123123123",
-                // }
+               
                 let coNode = document.querySelector("#connection"),
                     uemail = coNode.querySelector("input[name='email']").value,
                     upwd   = coNode.querySelector("input[name='password']").value;
@@ -147,6 +144,8 @@ import page from "//unpkg.com/page/page.mjs";
                         console.log(info.usager)
                     });
             }
+            
+            
             if(evt.target.classList.contains("actionDeconnecter")){
                 info.usager = {};
             }
@@ -161,7 +160,8 @@ import page from "//unpkg.com/page/page.mjs";
                     tdescription = tacheNode.querySelector("input[name='description']").value;
                 
                 let tache = {
-                        description : tdescription
+                        description : tdescription,
+                        complete    : ""
                     }  
                     console.log(info.usager.token);  
                 if(info.usager.token){
@@ -171,9 +171,22 @@ import page from "//unpkg.com/page/page.mjs";
 
             if(evt.target.classList.contains("material-icons")){
                 let liNode = evt.target.parentNode;
-                console.log(liNode) 
-                console.log(liNode.dataset.id);
+                console.log("tache id : "+liNode.dataset.id);
                 Tache.delTache(liNode.dataset.id,info.usager.token)
+            }
+
+            
+            if(evt.target.getAttribute("data-id")){
+                let liNode = evt.target;
+                console.log("tache id : "+liNode.dataset.id);
+                Tache.updateTache(liNode.dataset.id,info.usager.token)
+                .then(infoTache => {
+                      infoTache.data.completed = "true";
+                      console.log(infoTache.data);   
+                });
+                    
+                evt.target.classList.toggle("complete");
+                
             }
 
         })
